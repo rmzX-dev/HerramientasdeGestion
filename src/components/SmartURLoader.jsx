@@ -32,24 +32,24 @@ const THICKNESS = 4; // Grosor del trazo del arco (px dentro del viewBox)
 const { interpolate: flubberInterpolate, separate } = flubber;
 
 const ARCS = [
-  { r: 29, color: "#f58220", fill: "#ff7d1f", startDeg: -180, ox: CX, oy: -10 }, // Naranja – órbita ~81px
+  { r: 29, color: "var(--color-orange)", fill: "var(--color-orange)", startDeg: -180, ox: CX, oy: -10 }, // Naranja – órbita ~81px
   {
     r: 43,
-    color: "#ff4d8d",
-    fill: "#fc478e",
+    color: "var(--color-pink)",
+    fill: "var(--color-pink)",
     startDeg: 120.5,
     ox: CX,
     oy: -10,
   }, // Rosa – órbita ~107px
   {
     r: 79,
-    color: "#a3d14f",
-    fill: "#9ccc44",
+    color: "var(--color-green)",
+    fill: "var(--color-green)",
     startDeg: -209.7,
     ox: CX,
     oy: -20,
   }, // Verde – órbita ~135px
-  { r: 90, color: "#914ef5", fill: "#984efd", startDeg: 82.9, ox: -50, oy: 10 }, // Púrpura – órbita ~195px
+  { r: 90, color: "var(--color-purple)", fill: "var(--color-purple)", startDeg: 82.9, ox: -50, oy: 10 }, // Púrpura – órbita ~195px
 ];
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -120,44 +120,44 @@ const ALL_ICON_PATHS = [
  *
  * Colores usados:
  *   #4db9ca → Cyan/turquesa (piezas principales del marcador)
- *   #984efd → Púrpura (laterales del marcador y detalle de hoja/tallo)
- *   #fc478e → Rosa (cuerpo inferior / cola del marcador)
+ *   var(--color-purple) → Púrpura (laterales del marcador y detalle de hoja/tallo)
+ *   var(--color-pink) → Rosa (cuerpo inferior / cola del marcador)
  * ═══════════════════════════════════════════════════════════════════════════ */
 const PIN_PATHS = [
   {
     // Corona superior del pin (arco de arriba)
     d: "M84.71,0h-.18A84.48,84.48,0,0,0,30,20L45.41,35.58a63.3,63.3,0,0,1,39-13.39h0c14.69,0,29.14,5.73,39.91,14.1l15.68-15.77C125.33,8.19,105.44,0,84.71,0Z",
-    color: "#4db9ca",
+    color: "var(--color-cyan)",
   },
   {
     // Lateral izquierdo superior del pin
     d: "M45.41,35.58,30,20A84.17,84.17,0,0,0,0,84.48c0,.45,0,.89,0,1.33H20.83A63.49,63.49,0,0,1,45.41,35.58Z",
-    color: "#984efd",
+    color: "var(--color-purple)",
   },
   {
     // Lateral derecho superior del pin
     d: "M140.05,20.52,124.37,36.29A63.5,63.5,0,0,1,148,84.93h21.38v-.45A84.18,84.18,0,0,0,140.05,20.52Z",
-    color: "#984efd",
+    color: "var(--color-purple)",
   },
   {
     // Lateral izquierdo medio del pin
     d: "M20.83,85.81H0c.33,21.86,8.91,39.75,23.11,56.69l22.47,29,13.89-14V137.36C37.15,129.31,20.83,111.23,20.83,85.81Z",
-    color: "#4db9ca",
+    color: "var(--color-cyan)",
   },
   {
     // Cuerpo interior izquierdo del pin
     d: "M87.58,120.88a21.77,21.77,0,0,1,10-18.33,16.08,16.08,0,0,1-.9-16.78H20.78c0,.08,0,.17,0,.25a63.61,63.61,0,0,0,63.61,63.62c1.08,0,2.14,0,3.2-.09Z",
-    color: "#4db9ca",
+    color: "var(--color-cyan)",
   },
   {
     // Cuerpo derecho + cola inferior del pin (pieza más grande)
     d: "M148,84.93c0,.29,0,.58,0,.88a58.17,58.17,0,0,1-6,26.69C132.41,131.34,112.14,142,87.12,142a81.82,81.82,0,0,1-27.63-4.68V157.5l-13.89,14L52.94,181l27.4,35.39a5.52,5.52,0,0,0,8.74,0L116.48,181l29.81-38.5c3.56-4.88,6.94-9.81,10-14.88,7.7-12.91,13.06-26.7,13.16-42.69Z",
-    color: "#fc478e",
+    color: "var(--color-pink)",
   },
   {
     // Detalle decorativo: tallo de la hoja (forma de enredadera)
     d: "M30.13,61.83c-.76,1.17-1.41,2.2-1.92,3a.54.54,0,0,1-.81.12,14.8,14.8,0,0,1-4.91-12.5L13.87,59.1a15.13,15.13,0,0,1,5.75,2.72,15.87,15.87,0,0,1,5.54,8.73c.45,1.78.44,3.62.42,7.32,0,3.22-.29,6.09-.45,7.9h3.92a36.37,36.37,0,0,1,0-7.07,38,38,0,0,1,1.58-7.82A31.52,31.52,0,0,1,33,64.64c1.23-2.33,2.41-3.6,1.88-4.6a2.21,2.21,0,0,0-2.3-.83C31.73,59.38,31.31,60,30.13,61.83Z",
-    color: "#984efd",
+    color: "var(--color-purple)",
   },
 ];
 
