@@ -1,0 +1,427 @@
+---
+interface Props {
+  lang?: "es" | "en" | "fr" | "pt";
+}
+
+const { lang = "es" } = Astro.props;
+
+const t = {
+  es: {
+    badge: "Portal B2B",
+    title: "¿Eres una empresa turística?",
+    subtitle:
+      "Registra tu negocio en SMARTUR y llega a miles de turistas que visitan las Altas Montañas de Veracruz.",
+    cta: "Registra tu negocio gratis",
+    ctaNote: "Sin costo durante el período de lanzamiento",
+    features: [
+      {
+        icon: "chart",
+        title: "Panel de analytics",
+        desc: "Métricas de favoritos, visitas y calificaciones de tus servicios en tiempo real.",
+      },
+      {
+        icon: "mobile",
+        title: "Visibilidad en la app",
+        desc: "Tus servicios aparecen en las recomendaciones de IA de la app SMARTUR para iOS y Android.",
+      },
+      {
+        icon: "bell",
+        title: "Notificaciones push",
+        desc: "El equipo SMARTUR puede comunicar novedades directamente a los turistas interesados en ti.",
+      },
+      {
+        icon: "check",
+        title: "Registro inmediato",
+        desc: "Crea tu cuenta y agrega tus servicios en minutos. Revisión por el equipo en 24h.",
+      },
+    ],
+  },
+  en: {
+    badge: "B2B Portal",
+    title: "Do you run a tourism business?",
+    subtitle:
+      "List your business on SMARTUR and reach thousands of tourists visiting the Altas Montañas of Veracruz.",
+    cta: "Register your business for free",
+    ctaNote: "Free during launch period",
+    features: [
+      {
+        icon: "chart",
+        title: "Analytics dashboard",
+        desc: "Real-time favorites, visits, and ratings metrics for your services.",
+      },
+      {
+        icon: "mobile",
+        title: "In-app visibility",
+        desc: "Your services appear in AI-powered recommendations on the SMARTUR iOS & Android app.",
+      },
+      {
+        icon: "bell",
+        title: "Push notifications",
+        desc: "The SMARTUR team can send updates directly to tourists interested in your business.",
+      },
+      {
+        icon: "check",
+        title: "Quick onboarding",
+        desc: "Create your account and add services in minutes. Team review within 24h.",
+      },
+    ],
+  },
+  fr: {
+    badge: "Portail B2B",
+    title: "Vous gérez une entreprise touristique ?",
+    subtitle:
+      "Inscrivez votre établissement sur SMARTUR et atteignez des milliers de touristes dans les Altas Montañas de Veracruz.",
+    cta: "Inscrivez votre établissement gratuitement",
+    ctaNote: "Gratuit pendant la période de lancement",
+    features: [
+      {
+        icon: "chart",
+        title: "Tableau de bord",
+        desc: "Métriques en temps réel : favoris, visites et évaluations de vos services.",
+      },
+      {
+        icon: "mobile",
+        title: "Visibilité dans l'app",
+        desc: "Vos services apparaissent dans les recommandations IA de l'app SMARTUR (iOS & Android).",
+      },
+      {
+        icon: "bell",
+        title: "Notifications push",
+        desc: "L'équipe SMARTUR peut communiquer des nouveautés directement aux touristes intéressés.",
+      },
+      {
+        icon: "check",
+        title: "Inscription rapide",
+        desc: "Créez votre compte et ajoutez vos services en quelques minutes. Révision sous 24h.",
+      },
+    ],
+  },
+  pt: {
+    badge: "Portal B2B",
+    title: "É uma empresa turística?",
+    subtitle:
+      "Registre seu negócio na SMARTUR e alcance milhares de turistas que visitam as Altas Montanhas de Veracruz.",
+    cta: "Registre seu negócio grátis",
+    ctaNote: "Sem custo durante o período de lançamento",
+    features: [
+      {
+        icon: "chart",
+        title: "Painel de analytics",
+        desc: "Métricas de favoritos, visitas e avaliações dos seus serviços em tempo real.",
+      },
+      {
+        icon: "mobile",
+        title: "Visibilidade no app",
+        desc: "Seus serviços aparecem nas recomendações de IA do app SMARTUR para iOS e Android.",
+      },
+      {
+        icon: "bell",
+        title: "Notificações push",
+        desc: "A equipe SMARTUR pode comunicar novidades diretamente aos turistas interessados em você.",
+      },
+      {
+        icon: "check",
+        title: "Registro imediato",
+        desc: "Crie sua conta e adicione seus serviços em minutos. Revisão pela equipe em 24h.",
+      },
+    ],
+  },
+}[lang];
+
+const plataformaUrl =
+  (import.meta.env.PUBLIC_TOURIST_APP_URL || "https://smartur.online").replace(/\/+$/, "");
+
+/* SVG icon map — stroke-based, matches Landing's icon aesthetic */
+const ICONS: Record<string, string> = {
+  chart: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+  mobile: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`,
+  bell: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+};
+---
+
+<section class="empresa-cta">
+  <!-- data attr lets the modal script know where PLATAFORMA lives -->
+  <div data-plataforma-url={plataformaUrl} hidden aria-hidden="true"></div>
+
+  <div class="u-container">
+    <div class="inner">
+      <!-- Left: text + CTA -->
+      <div class="left">
+        <h2 class="u-heading ec-title" data-sy-reveal="words" data-sy-reveal-manual="">
+          {t.title}
+        </h2>
+        <p class="u-text ec-subtitle">{t.subtitle}</p>
+
+        <div class="cta-row">
+          <button type="button" id="open-register-empresa" class="ec-cta-btn" aria-label={t.cta}>
+            <span>
+              <span>{t.cta}</span>
+              <span aria-hidden="true">{t.cta}</span>
+            </span>
+          </button>
+          <p class="ec-cta-note">{t.ctaNote}</p>
+        </div>
+      </div>
+
+      <!-- Right: feature cards -->
+      <div class="features">
+        {
+          t.features.map((f, i) => (
+            <div
+              class="feature-card"
+              data-sy-reveal="fade"
+              style={`transition-delay: ${i * 0.1}s`}
+            >
+              <div class="feature-icon-wrap" aria-hidden="true">
+                <Fragment set:html={ICONS[f.icon]} />
+              </div>
+              <div class="feature-body">
+                <p class="feature-title">{f.title}</p>
+                <p class="u-text feature-desc">{f.desc}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .empresa-cta {
+    position: relative;
+    padding: 6rem 0;
+    background: var(--color-bg-alt);
+    overflow: hidden;
+
+    /* Top border line — matches other sections */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(var(--rgb-text), 0.07);
+    }
+
+    @media (--mq-tablet) {
+      padding: 4rem 0;
+    }
+
+    @media (--mq-phone) {
+      padding: 3rem 0;
+    }
+  }
+
+  /* ── Main grid ───────────────────────── */
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+
+    @media (--mq-tablet) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  /* ── Left ────────────────────────────── */
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ec-title {
+    --fs: 2.75rem;
+    --lh: 1.2;
+    --fw: 800;
+    color: var(--color-text);
+
+    @media (--mq-tablet) {
+      --fs: 2.25rem;
+    }
+
+    @media (--mq-phone) {
+      --fs: 1.875rem;
+    }
+  }
+
+  .ec-subtitle {
+    --fs: var(--font-size-md);
+    color: var(--color-text-alt);
+    max-width: 42ch;
+    line-height: 1.7;
+
+    @media (--mq-phone) {
+      max-width: 100%;
+    }
+  }
+
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+
+    @media (--mq-phone) {
+      align-items: stretch;
+    }
+  }
+
+  /* Botón con efecto clip-path — mismo estilo que btn-primary-alt de Button.astro */
+  .ec-cta-btn {
+    --text-color: var(--color-white);
+    --bg-color: var(--color-purple);
+    --hover-bg-color: var(--color-white);
+    --hover-text-color: var(--color-purple);
+
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 100px;
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+
+    > span {
+      display: block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        border-radius: 99px;
+        border: 2px solid var(--bg-color);
+        z-index: 2;
+      }
+
+      > span {
+        color: var(--text-color);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9375em 1.75em;
+        line-height: 1.25;
+        background: var(--bg-color);
+
+        @media (--mq-phone) {
+          padding: 0.75em 1.25em;
+          font-size: 0.875rem;
+        }
+
+        &:first-child {
+          transition: clip-path 0.6s var(--ease-out-cubic);
+          color: var(--hover-text-color);
+          background: var(--hover-bg-color);
+          z-index: 2;
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          justify-content: center;
+          clip-path: inset(50% round 99px);
+        }
+      }
+    }
+
+    &:hover > span > span:first-child,
+    &:focus > span > span:first-child {
+      clip-path: inset(-100% 0 round 99px);
+    }
+
+    @media (--mq-phone) {
+      width: 100%;
+      display: block;
+      > span > span { justify-content: center; }
+    }
+  }
+
+  .ec-cta-note {
+    --fs: var(--font-size-xs);
+    color: var(--color-text-alt);
+    opacity: 0.55;
+  }
+
+  /* ── Feature grid ────────────────────── */
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (--mq-phone) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--color-bg);
+    border: 1px solid rgba(var(--rgb-text), 0.07);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    transition:
+      border-color 0.25s var(--ease-standard),
+      transform 0.25s var(--ease-standard),
+      box-shadow 0.25s var(--ease-standard);
+
+    &:hover {
+      border-color: rgba(var(--rgb-purple-accent), 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(var(--rgb-text), 0.06);
+    }
+  }
+
+  .feature-icon-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: rgba(var(--rgb-purple-accent), 0.1);
+    color: var(--color-purple);
+    margin-top: 0.1rem;
+  }
+
+  .feature-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .feature-title {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+
+  .feature-desc {
+    --fs: var(--font-size-xs);
+    color: var(--color-text-alt);
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  document.getElementById('open-register-empresa')
+    ?.addEventListener('click', () => {
+      (document.getElementById('register-empresa-modal') as HTMLDialogElement)
+        ?.showModal();
+    });
+</script>

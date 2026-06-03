@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -25,15 +26,18 @@ const {
 ---
 
 <header>
-  <sy-head>
+  <nav class="navbar">
     <div class="inner">
       <div class="wrapper">
         <a class="logo" href={logoUrl}>
-          <img
-            src={logoImage.src}
+          <Image
+            src={logoImage}
             alt={logoAlt}
             loading="eager"
             decoding="async"
+            fetchpriority="high"
+            width={160}
+            height={48}
           />
           <span class="u-sr-only">{logoAlt}</span>
         </a>
@@ -48,6 +52,10 @@ const {
               ))
             }
           </ul>
+          <div class="menu-controls">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
         </div>
 
         <div class="buttons">
@@ -64,7 +72,9 @@ const {
               />
             ) : null
           }
-          {link2 ? <Button {...link2} revealable={false} /> : null}
+          {link2 ? (
+            <Button {...link2} revealable={false} class="signup" />
+          ) : null}
 
           <div class="controls">
             <LanguageSwitcher />
@@ -82,18 +92,18 @@ const {
         </div>
       </div>
     </div>
-  </sy-head>
+  </nav>
 </header>
 
 <style>
-  sy-head {
+  nav.navbar {
     --br: 50px;
 
     position: fixed;
     top: 0.75rem;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 9999;
     color: var(--color-text);
     margin: 0 auto;
     padding: 0.5rem 0;
@@ -101,6 +111,10 @@ const {
     max-width: 100%;
     box-sizing: border-box;
     transition: transform 0.3s var(--ease-out-cubic);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     /* When menu is open, disable the transform to avoid stacking context issues */
     :global(body.is-nav-opened) & {
@@ -115,11 +129,6 @@ const {
     @media (--mq-tablet-sm) {
       --br: 1rem;
       top: 0.5rem;
-    }
-
-    &::before,
-    &::after {
-      display: none;
     }
   }
 
@@ -138,6 +147,7 @@ const {
 
   .wrapper {
     position: relative;
+    z-index: 9999;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,12 +157,13 @@ const {
     max-width: 1360px;
     margin: 0 auto;
     border-radius: var(--br);
-    background: rgba(var(--rgb-bg), 0.88);
+    background: rgba(var(--rgb-bg), 0.88) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--color-border);
     transition: box-shadow 0.3s var(--ease-out-cubic);
+    pointer-events: auto;
 
     @media (--mq-tablet) {
       gap: 1.25rem;
@@ -160,8 +171,8 @@ const {
     }
     @media (--mq-phone) {
       gap: 0.5rem;
-      padding: 0.35rem;
-      justify-content: flex-end;
+      padding: 0.35rem 0.5rem;
+      justify-content: space-between;
     }
   }
 
@@ -190,9 +201,11 @@ const {
     display: flex;
     margin-left: 2rem;
     width: auto;
+    pointer-events: auto;
+    z-index: 9999;
 
     /* Adjust menu item spacing */
-    @media (max-width: 1024px) {
+    @media (--mq-tablet) {
       :global(ul) {
         gap: 1.25em;
       }
@@ -201,8 +214,9 @@ const {
     @media (--mq-tablet) {
       align-items: center;
       justify-content: center;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
+      height: 100dvh;
       position: fixed;
       z-index: 2;
       background: rgba(var(--rgb-bg), 0.98);
@@ -210,9 +224,12 @@ const {
       -webkit-backdrop-filter: blur(20px);
       top: 0;
       left: 0;
-      margin: 0; /* Ensures the menu doesn't take up width with invisible spacing */
+      margin: 0;
       clip-path: inset(0 0 0%);
       transition: clip-path 0.5s var(--ease-out-expo);
+      flex-direction: column;
+      gap: 2rem;
+      padding: 6rem var(--container-offset) 2rem;
 
       :global(body:not(.is-nav-opened)) & {
         clip-path: inset(0 0 100%);
@@ -308,7 +325,7 @@ const {
 
         &:hover,
         &:focus {
-          color: var(--color-pink) !important;
+          color: var(--color-purple) !important;
 
           &::before {
             transform: scaleX(1);
@@ -318,7 +335,13 @@ const {
 
         &.is-active,
         &:global(.is-active) {
-          color: var(--color-pink) !important;
+          color: var(--color-purple) !important;
+
+          &::before {
+            transform: scaleX(1);
+            transform-origin: left;
+            background: var(--color-purple);
+          }
         }
       }
     }
@@ -337,7 +360,7 @@ const {
       z-index: 100;
     }
 
-    @media (max-width: 1024px) {
+    @media (--mq-tablet) {
       gap: 0.75rem;
     }
 
@@ -355,7 +378,7 @@ const {
     margin-left: 1rem;
     border-left: 1px solid rgba(var(--rgb-text), 0.1);
 
-    @media (max-width: 1024px) {
+    @media (--mq-tablet) {
       padding-left: 0.75rem;
       margin-left: 0.75rem;
     }
@@ -365,9 +388,29 @@ const {
       padding-left: 0;
       margin-left: 0;
     }
+  }
 
-    @media (--mq-phone) {
-      display: none; /* Hide action buttons on mobile to stop horizontal bleed */
+  @media (--mq-phone) {
+    .buttons :global(.btn) {
+      display: none;
+    }
+  }
+
+  .menu-controls {
+    display: none;
+  }
+
+  @media (--mq-phone) {
+    .controls {
+      display: none;
+    }
+
+    .menu-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
     }
   }
 
@@ -523,121 +566,107 @@ const {
 </style>
 
 <script>
-  import { addScrollObserver } from "../utils/observers";
+  // Navbar state
+  let navState = {
+    initialized: false,
+    scrollY: 0,
+    prevY: 0,
+    smallThreshold: 100,
+    hiddenThreshold: 200
+  };
 
-  const heroSelectors = ["sy-hero-home"];
+  function initNavbar() {
+    const navbar = document.querySelector('nav.navbar');
+    if (!navbar || navState.initialized) return;
+    navState.initialized = true;
 
-  class Header extends HTMLElement {
-    smallThreshold = 100;
-    hiddenThreshold = 200;
-    hero = document.querySelector(heroSelectors.join(","));
-    prevY = -1;
+    console.log('Initializing navbar');
 
-    constructor() {
-      super();
-      addScrollObserver(this);
-    }
-
-    connectedCallback() {
-      const toggleEl = this.querySelector(".toggle");
-      if (toggleEl) {
-        toggleEl.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          this.toggleNav();
-        });
-      }
-
-      const menuLinks = this.querySelectorAll(".menu a[href^='#']");
-      menuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          document.body.classList.remove("is-nav-opened");
-        });
+    // Toggle menu button
+    const toggleBtn = navbar.querySelector('.toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        console.log('Toggle clicked');
+        e.preventDefault();
+        e.stopPropagation();
+        document.body.classList.toggle('is-nav-opened');
       });
-
-      this.onResize();
-      this.onScroll(typeof window !== "undefined" ? window.scrollY : 0);
-
-      this.initScrollSpy();
     }
 
-    initScrollSpy() {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Find the link corresponding to this section
-              const id = entry.target.id;
-              const link = this.querySelector(`.menu a[href="#${id}"]`);
-              if (link) {
-                // Remove active class from all links
-                this.querySelectorAll(".menu a").forEach((l) =>
-                  l.classList.remove("is-active"),
-                );
-                // Add active class to the current link
-                link.classList.add("is-active");
-              }
+    // Close menu and navigate when clicking links
+    const menuLinks = navbar.querySelectorAll('.menu a[href^="#"]');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        console.log('Link clicked:', link.href);
+        document.body.classList.remove('is-nav-opened');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Scroll spy - highlight active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const link = navbar.querySelector(`.menu a[href="#${id}"]`);
+            if (link) {
+              navbar.querySelectorAll('.menu a').forEach(l => l.classList.remove('is-active'));
+              link.classList.add('is-active');
             }
-          });
-        },
-        {
-          rootMargin: "-20% 0px -60% 0px", // Trigger when section is near the top
-          threshold: 0,
-        },
-      );
-
-      // Select all sections that have a corresponding link in the menu
-      const links = this.querySelectorAll(".menu a[href^='#']");
-      links.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (href && href.length > 1) {
-          const id = href.substring(1);
-          const section = document.getElementById(id);
-          if (section) {
-            observer.observe(section);
           }
-        }
-      });
-    }
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    );
 
-    onScroll(y: number) {
-      const isDown = y > this.prevY ? true : false;
-      this.prevY = y;
-
-      const classList = document.body.classList;
-
-      const shouldBeSmall = y > this.smallThreshold;
-      const isSmall = classList.contains("is-nav-small");
-
-      if (shouldBeSmall !== isSmall) {
-        classList.toggle("is-nav-small", shouldBeSmall);
+    menuLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        const id = href.substring(1);
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
       }
-
-      const shouldBeHidden = y > this.hiddenThreshold && isDown;
-      const isHidden = classList.contains("is-nav-hidden");
-
-      if (shouldBeHidden !== isHidden) {
-        classList.toggle("is-nav-hidden", shouldBeHidden);
-      }
-    }
-
-    toggleNav = () => {
-      document.body.classList.toggle("is-nav-opened");
-      if (document.body.classList.contains("is-nav-opened")) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "";
-      }
-    };
-
-    onResize() {
-      const hero = this.hero;
-      const bcr = this.getBoundingClientRect();
-      const heroBcr = hero && hero.getBoundingClientRect();
-
-      this.smallThreshold = heroBcr ? heroBcr.height - bcr.height : bcr.height;
-    }
+    });
   }
 
-  customElements.define("sy-head", Header);
+  // Scroll handler for hide/show navbar
+  function handleScroll() {
+    navState.scrollY = window.scrollY;
+    const classList = document.body.classList;
+
+    // Show/hide navbar on scroll
+    const shouldBeSmall = navState.scrollY > navState.smallThreshold;
+    const isSmall = classList.contains('is-nav-small');
+    if (shouldBeSmall !== isSmall) {
+      classList.toggle('is-nav-small', shouldBeSmall);
+    }
+
+    const isDown = navState.scrollY > navState.prevY;
+    const shouldBeHidden = navState.scrollY > navState.hiddenThreshold && isDown;
+    const isHidden = classList.contains('is-nav-hidden');
+    if (shouldBeHidden !== isHidden) {
+      classList.toggle('is-nav-hidden', shouldBeHidden);
+    }
+
+    navState.prevY = navState.scrollY;
+  }
+
+  // Initialize when DOM is ready
+  function initAll() {
+    initNavbar();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  // Re-initialize on Astro navigation
+  document.addEventListener('astro:after-swap', () => {
+    navState.initialized = false;
+    initAll();
+  });
 </script>

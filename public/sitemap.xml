@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Español (default) -->
+  <url>
+    <loc>https://smartur.online/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smartur.online/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smartur.online/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://smartur.online/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://smartur.online/pt/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- English -->
+  <url>
+    <loc>https://smartur.online/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smartur.online/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smartur.online/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://smartur.online/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://smartur.online/pt/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Français -->
+  <url>
+    <loc>https://smartur.online/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smartur.online/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smartur.online/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://smartur.online/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://smartur.online/pt/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Português -->
+  <url>
+    <loc>https://smartur.online/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://smartur.online/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://smartur.online/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://smartur.online/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://smartur.online/pt/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

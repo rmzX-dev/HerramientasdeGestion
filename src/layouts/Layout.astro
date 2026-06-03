@@ -37,12 +37,20 @@ const linksMap = {
     { title: t("nav.contact"), url: "#contact" },
   ],
   fr: [
-    { title: t("nav.home"), url: "#home" }, // "home" is fine for now, or "accueil"
+    { title: t("nav.home"), url: "#home" },
     { title: t("nav.destination"), url: "#region" },
     { title: t("nav.technology"), url: "#technology" },
-    { title: t("nav.about"), url: "#about" }, // "about" is fine or "apropos"
+    { title: t("nav.about"), url: "#about" },
     { title: t("nav.pricing"), url: "#pricing" },
     { title: t("nav.contact"), url: "#contact" },
+  ],
+  pt: [
+    { title: t("nav.home"), url: "#inicio" },
+    { title: t("nav.destination"), url: "#region" },
+    { title: t("nav.technology"), url: "#tecnologia" },
+    { title: t("nav.about"), url: "#nosso" },
+    { title: t("nav.pricing"), url: "#pricing" },
+    { title: t("nav.contact"), url: "#contato" },
   ],
 };
 
@@ -51,108 +59,193 @@ const links = linksMap[currentLang as keyof typeof linksMap] || linksMap.es;
 // Localized SEO metadata
 const seoMetadata = {
   es: {
-    title: "SMARTUR - Turismo Inteligente en las Altas Montañas",
+    title: "SMARTUR | Turismo Inteligente en Veracruz — Altas Montañas",
     description:
-      "SMARTUR: Plataforma de recomendación turística inteligente para MiPyMEs en las Altas Montañas de Veracruz. Utilizamos IA para potenciar el turismo regional con recomendaciones personalizadas.",
+      "Descubre qué hacer en Veracruz con SMARTUR. IA que recomienda hoteles, restaurantes y tours en Córdoba, Orizaba y las Altas Montañas. Turismo inteligente.",
     keywords:
-      "Turismo Veracruz, SMARTUR, IA Turística, Altas Montañas, Recomendaciones Personalizadas, MiPyMEs Turísticas, Inteligencia Artificial, Turismo Regional, Machine Learning, Veracruz México",
-    ogTitle: "SMARTUR - Turismo Inteligente en las Altas Montañas de Veracruz",
+      "qué hacer en Veracruz, turismo Veracruz, Altas Montañas Veracruz, turismo Córdoba Veracruz, recomendación turística, SMARTUR, rutas personalizadas Veracruz, inteligencia artificial turismo, hoteles Altas Montañas, restaurantes Córdoba, Orizaba turismo, MiPyMEs turísticas",
+    ogTitle: "SMARTUR — Turismo Inteligente en las Altas Montañas de Veracruz",
     ogDescription:
-      "Plataforma de IA para recomendaciones turísticas personalizadas en la región de Las Altas Montañas, Veracruz",
+      "Descubre qué hacer en Veracruz con SMARTUR. Recomendaciones con IA de hoteles, restaurantes y tours en Córdoba, Orizaba y la región.",
     locale: "es_MX",
   },
   en: {
-    title: "SMARTUR - Smart Tourism for the High Mountains",
+    title: "SMARTUR | Smart Tourism in Veracruz — High Mountains",
     description:
-      "SMARTUR: Intelligent tourism recommendation platform for SMEs in the High Mountains of Veracruz. We use AI to boost regional tourism with personalized recommendations.",
+      "Discover things to do in Veracruz with SMARTUR. AI-powered recommendations for hotels, restaurants, and tours in Córdoba, Orizaba and the Altas Montañas.",
     keywords:
-      "Veracruz Tourism, SMARTUR, Tourism AI, High Mountains, Personalized Recommendations, Tourism SMEs, Artificial Intelligence, Regional Tourism, Machine Learning, Veracruz Mexico",
-    ogTitle: "SMARTUR - Smart Tourism for the High Mountains of Veracruz",
+      "things to do in Veracruz, Veracruz tourism, High Mountains Veracruz, Altas Montañas, Cordoba Veracruz tourism, SMARTUR, personalized travel recommendations, AI tourism Mexico, Orizaba tourism",
+    ogTitle: "SMARTUR — Smart Tourism for the High Mountains of Veracruz",
     ogDescription:
-      "AI platform for personalized tourism recommendations in the High Mountains region, Veracruz",
+      "Discover things to do in Veracruz with SMARTUR. AI-powered recommendations for hotels, restaurants, and tours in the High Mountains region.",
     locale: "en_US",
   },
   fr: {
-    title: "SMARTUR - Tourisme Intelligent pour les Hautes Montagnes",
+    title: "SMARTUR | Tourisme Intelligent au Veracruz — Hautes Montagnes",
     description:
-      "SMARTUR: Plateforme de recommandation touristique intelligente pour les PME dans les Hautes Montagnes de Veracruz. Nous utilisons l'IA pour stimuler le tourisme régional avec des recommandations personnalisées.",
+      "Découvrez quoi faire à Veracruz avec SMARTUR. Recommandations IA d'hôtels, restaurants et circuits dans les Hautes Montagnes, Córdoba et Orizaba.",
     keywords:
-      "Tourisme Veracruz, SMARTUR, IA Touristique, Hautes Montagnes, Recommandations Personnalisées, PME Touristiques, Intelligence Artificielle, Tourisme Régional, Machine Learning, Veracruz Mexique",
-    ogTitle:
-      "SMARTUR - Tourisme Intelligent pour les Hautes Montagnes de Veracruz",
+      "tourisme Veracruz, SMARTUR, IA touristique, Hautes Montagnes, recommandations personnalisées, PME touristiques, Veracruz Mexique",
+    ogTitle: "SMARTUR — Tourisme Intelligent dans les Hautes Montagnes de Veracruz",
     ogDescription:
-      "Plateforme d'IA pour des recommandations touristiques personnalisées dans la région des Hautes Montagnes, Veracruz",
+      "Découvrez quoi faire à Veracruz avec SMARTUR. Recommandations IA personnalisées dans les Hautes Montagnes.",
     locale: "fr_FR",
+  },
+  pt: {
+    title: "SMARTUR | Turismo Inteligente no Veracruz — Altas Montanhas",
+    description:
+      "Descubra o que fazer em Veracruz com SMARTUR. IA que recomenda hotéis, restaurantes e tours em Córdoba, Orizaba e as Altas Montanhas do México.",
+    keywords:
+      "turismo Veracruz, SMARTUR, IA turística, Altas Montanhas, recomendações personalizadas, turismo Córdoba, Orizaba turismo, México",
+    ogTitle: "SMARTUR — Turismo Inteligente nas Altas Montanhas de Veracruz",
+    ogDescription:
+      "Descubra o que fazer em Veracruz com SMARTUR. Recomendações IA personalizadas de hotéis, restaurantes e tours.",
+    locale: "pt_BR",
   },
 };
 
 const seo = seoMetadata[currentLang];
+const baseUrl = import.meta.env.PUBLIC_SITE_URL || "https://smartur.online";
+const canonicalUrl = new URL(Astro.url.pathname, baseUrl).href;
 ---
 
 <html lang={currentLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="XkhhFJUQntUbRcnxirHrfxc9bwGFdOLx71tjWAHtwPk" />
 
     <!-- SMARTUR SEO Metadata -->
-    <title>{title} | {seo.title}</title>
+    <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <meta name="keywords" content={seo.keywords} />
     <meta name="author" content="SMARTUR" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Hreflang / International SEO -->
+    <link rel="alternate" hreflang="es" href={`${baseUrl}/`} />
+    <link rel="alternate" hreflang="en" href={`${baseUrl}/en/`} />
+    <link rel="alternate" hreflang="fr" href={`${baseUrl}/fr/`} />
+    <link rel="alternate" hreflang="pt" href={`${baseUrl}/pt/`} />
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}/`} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SMARTUR" />
     <meta property="og:title" content={seo.ogTitle} />
     <meta property="og:description" content={seo.ogDescription} />
     <meta property="og:locale" content={seo.locale} />
+    <meta property="og:image" content={`${baseUrl}/image-1.jpg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content={seo.ogTitle} />
+    <meta property="og:url" content={canonicalUrl} />
 
-    <!-- Fonts - Vibrant Design System -->
+    <!-- Fonts — preconnect + preload critical weights -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <!-- Cal Sans via CDN (fallback to system fonts if unavailable) -->
     <!-- <link href="https://fonts.cdnfonts.com/css/cal-sans" rel="stylesheet" /> -->
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="SMARTUR - Turismo Inteligente en Veracruz"
-    />
-    <meta
-      name="twitter:description"
-      content="Plataforma de IA para recomendaciones turísticas personalizadas en Las Altas Montañas"
-    />
+    <meta name="twitter:title" content={t("layout.twitterCardTitle")} />
+    <meta name="twitter:description" content={t("layout.twitterCardDesc")} />
+    <meta name="twitter:image" content={`${baseUrl}/image-1.jpg`} />
+
+    <!-- Favicon & Icon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "SMARTUR",
-        "description": "{seo.description}",
-        "url": "https://smartur.mx",
-        "logo": "https://smartur.mx/logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "Veracruz",
-          "addressCountry": "MX"
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "SMARTUR",
+          "description": seo.description,
+          "url": baseUrl,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${baseUrl}/logo.png`,
+            "width": 200,
+            "height": 200
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Veracruz",
+            "addressCountry": "MX"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "contacto@smartur.online",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish", "English"]
+          },
+          "sameAs": [
+            "https://smartur.online",
+            "https://instagram.com/smartur"
+          ]
         },
-        "award": "Galardón Turístico Mi Veracruz 2024"
-      }
-    </script>
+        {
+          "@type": "WebSite",
+          "name": seo.title,
+          "url": baseUrl,
+          "description": seo.description,
+          "inLanguage": currentLang,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${baseUrl}/?q={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "url": canonicalUrl,
+          "name": `${title} | ${seo.title}`,
+          "description": seo.description,
+          "inLanguage": currentLang,
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": baseUrl
+          }
+        }
+      ]
+    })} />
   </head>
-  <body class="is-loading" data-tab-away={t("tab.away")}>
-    <PageLoader />
-    <a href="#main" class="skip-link">{t("accessibility.skip-to-content")}</a>
+  <body class="is-loading" data-tab-away={t("tab.away")} data-tab-away-fallback={t("layout.tabAwayFallback")}>
+    <PageLoader label={t("loader.ariaLabel")} />
+    <div class="page-blobs" aria-hidden="true">
+      <div class="pblob pblob-cyan-tr"></div>
+      <div class="pblob pblob-pink-ml"></div>
+      <div class="pblob pblob-purple-mr"></div>
+      <div class="pblob pblob-cyan-bl"></div>
+      <div class="pblob pblob-pink-br"></div>
+      <div class="pblob pblob-purple-bc"></div>
+    </div>
     <Header
       logoUrl="/"
       logoAlt={t("header.logo.alt")}
       links={links}
-      link1={{ title: t("button.login"), url: import.meta.env.PUBLIC_TOURIST_APP_URL || "http://2.24.112.25/" }}
+      link1={{ title: t("button.login"), url: import.meta.env.PUBLIC_TOURIST_APP_URL || "https://app.smartur.online/" }}
       link2={{ title: t("button.get-started"), url: "#contacto" }}
       mobileMenuLabel={t("accessibility.toggleMenu")}
     />
@@ -162,6 +255,7 @@ const seo = seoMetadata[currentLang];
           <slot />
         </main>
         <Footer
+          lang={currentLang}
           logoUrl="/"
           logoAlt="SMARTUR"
           links={links}
@@ -232,23 +326,35 @@ const seo = seoMetadata[currentLang];
     min-height: 100%;
     padding-bottom: 10rem; /* space so fixed footer does not cover content */
   }
+
+  @media (--mq-phone) {
+    body.native-scroll #smooth-content {
+      padding-bottom: 6rem;
+    }
+  }
 </style>
 
 <script>
   import "../utils/reveals";
 
-  // Tab visibility effect - change title when user leaves
+  // Tab visibility effect
   (() => {
     const originalTitle = document.title;
     const tabAwayMessage =
-      document.body.dataset.tabAway || "¿A dónde fuiste?  Regresa a SMARTUR";
-
+      document.body.dataset.tabAway || document.body.dataset.tabAwayFallback;
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        document.title = tabAwayMessage;
-      } else {
-        document.title = originalTitle;
-      }
+      document.title = document.hidden ? tabAwayMessage : originalTitle;
     });
+  })();
+
+  // Developer console easter egg
+  (() => {
+    const c = (color: string) => `color:${color};font-weight:700;font-size:13px`;
+    console.log(
+      "%cSMARTUR%c  Turismo Inteligente · Altas Montañas de Veracruz\n%c¿Te gusta lo que ves? Hablemos: martinlaraolivares@gmail.com",
+      `${c('#4DB9CA')};font-size:20px`,
+      c('#984EFD'),
+      `color:#aaa;font-weight:400;font-size:11px`
+    );
   })();
 </script>

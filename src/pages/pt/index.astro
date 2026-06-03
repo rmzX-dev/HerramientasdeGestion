@@ -15,19 +15,19 @@ import EmpresaCTA from "../../components/EmpresaCTA.astro";
 import RegisterEmpresaModal from "../../components/RegisterEmpresaModal.astro";
 import { ui } from "../../i18n/ui";
 
-const lang = "en";
+const lang = "pt";
 const t = ui[lang];
 ---
 
 <Layout title={t["nav.home"]}>
-  <section id="home">
+  <section id="inicio">
     <HeroHome
-      lang="en"
+      lang="pt"
       title={t["hero.title"]}
       subtitle={t["hero.subtitle"]}
       cta={{
         title: t["hero.cta"],
-        url: "#about",
+        url: "#nosso",
       }}
     />
   </section>
@@ -37,13 +37,13 @@ const t = ui[lang];
     id="region"
     title={t["video.title"]}
     description={t["video.description"]}
-    lang={lang}
+    lang="pt"
   />
 
-  <section id="technology">
+  <section id="tecnologia">
     <TechnologySection
       id="tecnologia-inner"
-      lang={lang}
+      lang="pt"
       stats={[
         {
           number: t["about.stat1.number"],
@@ -82,7 +82,7 @@ const t = ui[lang];
   />
 
   <About
-    id="about"
+    id="nosso"
     title={t["about.title"]}
     subtitle={t["about.subtitle"]}
     sectionLabel={t["about.sectionLabel"]}
@@ -154,7 +154,7 @@ const t = ui[lang];
     ]}
   />
 
-  <EmpresaCTA lang="en" />
+  <EmpresaCTA lang="pt" />
 
   <PlansNew
     id="pricing"
@@ -175,7 +175,7 @@ const t = ui[lang];
         },
         link: {
           title: t["button.contact"],
-          url: "#contact",
+          url: "#contato",
         },
         features: [
           { title: t["pricing.basic.feature1"] },
@@ -194,7 +194,7 @@ const t = ui[lang];
         },
         link: {
           title: t["button.contact"],
-          url: "#contact",
+          url: "#contato",
         },
         features: [
           { title: t["pricing.enterprise.feature1"] },
@@ -207,8 +207,8 @@ const t = ui[lang];
     ]}
   />
 
-  <section id="contact">
-    <ContactForm lang={lang} />
+  <section id="contato">
+    <ContactForm lang="pt" />
     <Faqs
       title={t["faqs.title"]}
       mobileTitle={t["faqs.title"]}
